@@ -41,24 +41,24 @@ class Student
 
 
 
-  public function addStudent($id,$name,$surname,$sidiCode,$taxCode){
-    $sql = "INSERT INTO `student` (id, name, surname, sidi_code, tax_code) VALUES (id=:id, name=:name, surname=:surname, sidi_code=:sidi_code, tax_code=:tax_code)";
-    //INSERT INTO student (id, name, surname, sidi_code, tax_code) VALUES ("3","nameBello","surname","2343423","dedseefsfe");{"id":"71","name":"Toruccio","surname":"Bartolucci","sidi_code":"6110630","tax_code":"LBNNDR04E13D612E"}
-    //curl --header "Content-Type: application/json" --request POST --data {"""_id""":3,"""_name""":"""nameBello""","""_surname""":"""surnameBello""","""_sidiCode""":"""452121""","""_taxCode""":"""RJDIJEIJWEJ9FDIEF"""} http://localhost:8080/student.php
-    
+  public function addStudent($name,$surname,$sidiCode,$taxCode){
+    $sql = "INSERT INTO `student` ( name, surname, sidi_code, tax_code) VALUES ( :name, :surname, :sidi_code, :tax_code)";
+    //INSERT INTO student (id, name, surname, sidi_code, tax_code) VALUES ("4","nameBello","surname","2343423","dedseefsfe");{"id":"71","name":"Toruccio","surname":"Bartolucci","sidi_code":"6110630","tax_code":"LBNNDR04E13D612E"}
+    //curl --header "Content-Type: application/json" --request POST --data {"""_name""":"""nameBello""","""_surname""":"""surnameBello""","""_sidiCode""":"""23233444""","""_taxCode""":"""RJDIJEIJWEJ9FDIEF"""} http://localhost:8080/student.php
+    $stmt = $this->db->prepare($sql);
     $data = [
-      'id' => $id,
+      //'id' => $id,
       'name' => $name,
       'surname' => $surname,
       'sidi_code' => $sidiCode,
       'tax_code' => $taxCode
     ];
 
-    print_r($data);
+    //print_r($data);
     //echo "// ".$sql."//";
     $stmt->execute($data);
-    $result = $stmt->fetch(\PDO::FETCH_ASSOC);
-    return $result;
+   
+    
   }
   // curl --header "Content-Type: application/json" --request DELETE --data {"""_id""":67} http://localhost:8080/student.php
   public function removeStudent($id){

@@ -34,49 +34,25 @@ switch($method) {
     */
     
     
-    if(isset($js_decoded["_id"])){
-      //echo "dati inseriti";
-      $controllo = $student->find($js_decoded["_id"]);
     
-      if($controllo==false){
+      //echo "dati inseriti";
+      
+    
+      
         
-        $controllo = $student->addStudent($js_decoded["_id"],$js_decoded["_name"],$js_decoded["_surname"],$js_decoded["_sidiCode"],$js_decoded["_taxCode"]);
+    $student->addStudent($js_decoded["_name"],$js_decoded["_surname"],$js_decoded["_sidiCode"],$js_decoded["_taxCode"]);
         
-        if($controllo==true){
-          echo "studente inserito!";
-        }
-        else{
-          echo "errore nel inserimento";
-          
-        }
+    
 
 
 
-      }else{
-        echo "Id gia utilizzato";
-      }
-    }else{
-      // curl --header "Content-Type: application/json" --request POST --data {"""_name""":"""nameBello""","""_surname""":"""surnameBello""","""_sidiCode""":"""452121""","""_taxCode""":"""RJDIJEIJWEJ9FDIEF"""} http://localhost:8080/student.php
-      $id =  $student->getId();
-      $controllo = $student->find($js_decoded["_id"]);
-      if($controllo==false){
-        
-        $controllo = $student->addStudent($id,$js_decoded["_name"],$js_decoded["_surname"],$js_decoded["_sidiCode"],$js_decoded["_taxCode"]);
-        
-        if($controllo==true){
-          echo "studente inserito!";
-        }
-        else{
-          echo "errore nel inserimento";
-          
-        }
+      
+    
 
 
 
-      }else{
-        echo "Id gia utilizzato";
-      }
-    }
+     
+    
     
     break;
 
@@ -117,6 +93,9 @@ switch($method) {
     break;
 
   case 'PUT':
+
+
+    
     $body = file_get_contents("php://input");
     $js_decoded = json_decode($body, true);
     if(isset($js_decoded["_name"])){
